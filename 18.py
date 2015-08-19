@@ -53,7 +53,12 @@ naive_sol(data)
 # begin with the second to last row and continue until
 # the top row, which should then hold the max sum. modifies original data
 
-# how many operations does this save?
+# how many operations does this save? well the naive solution scales
+# exponentially (we have to compute twice the number of routes for each
+# additional row). specifically it takes num_rows * 2^(num_rows-1) operations.
+# this new solution however has each row doing ROW NUMBER of compares for
+# max() and ROW NUMBER of additions (except the last row). so it is upper
+# bounded by O(n^2), which is much faster than O(2^n) (n is number of rows).
 
 def sol(data):
     i = len(data) - 2
