@@ -1,3 +1,6 @@
+# max path sum
+
+# data processing
 raw_data = """75
 95 64
 17 47 82
@@ -17,4 +20,40 @@ raw_data = """75
 data = []
 for s in raw_data.split('\n'):
     data.append(map(int, s.split()))
-print data
+
+# inc for indices for naive brute force
+def inc(indices):
+    i = len(indices)-1
+    while (indices[i]+1-indices[i-1] == 2):
+        i -= 1
+    val = indices[i]+1
+    while (i < len(indices)):
+        indices[i] = val
+        i += 1
+    return not (indices[0] > 0)
+          
+# naive brute force
+def naive_sol(data):
+    indices = [0] * len(data)
+    m = 0
+    Unfinished = True
+    while (Unfinished):
+        tmp = 0
+        for i in range(0, len(data)):
+            tmp += data[i][indices[i]]
+        m = max(m, tmp)
+        Unfinished = inc(indices)
+    print m
+    
+naive_sol(data)
+
+# heuristic that doesn't work
+#  def test(data):
+#     m = 0
+#     for l in data:
+#         m += max(l)
+#     return m
+
+# related problem: how many different routes are there? 2^(number of rows)
+# because each row doubles the number of routes, as each item in each row can
+# map to 2 numbers of the next row
