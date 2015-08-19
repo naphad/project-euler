@@ -47,6 +47,24 @@ def naive_sol(data):
     
 naive_sol(data)
 
+# another solution: instead of computing all possible routes,
+# for each item in a row, take the max of the two items it can be added
+# with in the next row and add to said item.
+# begin with the second to last row and continue until
+# the top row, which should then hold the max sum. modifies original data
+
+# how many operations does this save?
+
+def sol(data):
+    i = len(data) - 2
+    while (i >= 0):
+        for j in range(0, i+1):
+            data[i][j] += max(data[i+1][j], data[i+1][j+1])
+        i -= 1
+    print data[0][0]
+
+sol(data)
+
 # heuristic that doesn't work
 #  def test(data):
 #     m = 0
