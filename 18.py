@@ -47,11 +47,22 @@ def naive_sol(data):
     
 naive_sol(data)
 
+# note: instead of using an array of indices with the naive solution we
+# could have rewritten it by computing the index using index += i >> j & 1
+# where i is the current combination number and j is row number (assume
+# index is initialized to zero for every new combination number).
+#
+
 # another solution: instead of computing all possible routes,
 # for each item in a row, take the max of the two items it can be added
 # with in the next row and add to said item.
 # begin with the second to last row and continue until
-# the top row, which should then hold the max sum. modifies original data
+# the top row, which should then hold the max sum. modifies original data.
+# why does this work? because the max sum at the top breaks down into
+# the max sum of two subtriangles; we continue this to the smallest case
+# with subtriangles consisting of only 1 element and we can build the
+# largest sum from solving the subproblems. all the routes are contained within
+# the two subtriangles. 
 
 # how many operations does this save? well the naive solution scales
 # exponentially (we have to compute twice the number of routes for each
