@@ -51,7 +51,12 @@ naive_sol(data)
 # could have rewritten it by computing the index using index += i >> j & 1
 # where i is the current combination number and j is row number (assume
 # index is initialized to zero for every new combination number).
-#
+# every 1 in 0bi indicates increment in index and subsequent indices.
+# number of bits used is number of rows-1 (excludes top row).
+# because there are number of rows-1 bits, and each bitstring maps
+# to a unique combination (b/c 2^(num_rows-1) represented by said bits)
+# and unique valid index sequence (every 1 incs subsequent indices by 1),
+# we can use it to index the array of data.
 
 # another solution: instead of computing all possible routes,
 # for each item in a row, take the max of the two items it can be added
