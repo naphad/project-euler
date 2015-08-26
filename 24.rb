@@ -59,7 +59,13 @@ def mil_permutation(n=1000000, arr)
   end
 end
 
+
+
 arr = *(0..9)
+t0 = Time.now
 ans = mil_permutation(1000000, arr)
-puts ans
+t1 = Time.now
+tdelta = (t1-t0) * 1000
+
+puts "#{ans} in #{tdelta} ms"
 
