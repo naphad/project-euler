@@ -14,6 +14,8 @@ def is_empty(fname):
 sol_nums = {}
 files = os.listdir(os.curdir)
 for f in files:
+    if "lib" in f:
+        continue
     if ((os.path.splitext(f)[-1] in accepted_formats) and "check" not in f and "~" not in f):
         sol_nums[int(f[:-3])] = is_empty(f)
 print "ALL problems between", min(sol_nums), "and", max(sol_nums), "done EXCEPT" 
